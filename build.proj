@@ -10,12 +10,12 @@
     <Exec Command="dotnet test LAB1.Tests/LAB1.Tests.csproj" />
   </Target>
 
-  <!-- Ціль для запуску проекту LAB1 -->
+  <!-- Ціль для запуску проекту LABS -->
   <Target Name="RunLABS" DependsOnTargets="BuildSolution">
    <Exec Command="dotnet run --project LAB1/LAB1.csproj -- LAB1\INPUT.TXT" />
   </Target>
 
-  <!-- Ціль для побудови, тестування і запуску LAB1 -->
+  <!-- Ціль для побудови, тестування і запуску LABS -->
   <Target Name="BuildAndTest" DependsOnTargets="RunTests;RunLABS" />
   
 </Project>
