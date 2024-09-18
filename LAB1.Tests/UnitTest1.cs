@@ -23,7 +23,7 @@ namespace LAB1.Tests
             var ex = Record.Exception(() => Program.ValidateInput(lines));
             Assert.NotNull(ex);
             Assert.IsType<InvalidOperationException>(ex);
-            Assert.Equal("Кількість інгредієнтів не повинна перевищувати 32.", ex.Message);
+            Assert.Equal("The number of ingredients should not exceed 32.", ex.Message);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace LAB1.Tests
             var ex = Record.Exception(() => Program.ValidateInput(lines));
             Assert.NotNull(ex);
             Assert.IsType<InvalidOperationException>(ex);
-            Assert.Equal("'abc' не є дійсним числом.", ex.Message);
+            Assert.Equal("'abc' is not a real number.", ex.Message);
         }
 
         [Fact]

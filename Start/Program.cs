@@ -26,7 +26,6 @@ public class Start
 
             default:
                 Console.WriteLine("Невірний вибір. Спробуйте ще раз.");
-                Start_(); 
                 break;
         }
     }
@@ -35,7 +34,7 @@ public class Start
     {
         Console.WriteLine("Запуск першої лабораторної...");
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string projectDirectory = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\..\"));
+        string projectDirectory = Path.GetFullPath(Path.Combine(currentDirectory, "..", "..", "..", ".."));
 
         // Скласти шлях до папки LAB1
         string lab1Directory = Path.Combine(projectDirectory, "LAB1");

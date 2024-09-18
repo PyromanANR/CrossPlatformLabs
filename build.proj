@@ -1,0 +1,21 @@
+<Project DefaultTargets="BuildAndTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Ціль для побудови рішення -->
+  <Target Name="BuildSolution">
+    <MSBuild Projects="CrossPlatform.sln" Targets="Build" />
+  </Target>
+
+  <!-- Ціль для запуску тестів -->
+  <Target Name="RunTests" DependsOnTargets="BuildSolution">
+    <Exec Command="dotnet test LAB1.Tests/LAB1.Tests.csproj" />
+  </Target>
+
+  <!-- Ціль для запуску проекту LAB1 -->
+  <Target Name="RunLABS" DependsOnTargets="BuildSolution">
+   <Exec Command="dotnet run --project LAB1/LAB1.csproj -- LAB1\INPUT.TXT" />
+  </Target>
+
+  <!-- Ціль для побудови, тестування і запуску LAB1 -->
+  <Target Name="BuildAndTest" DependsOnTargets="RunTests;RunLABS" />
+  
+</Project>
