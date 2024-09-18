@@ -26,12 +26,12 @@ namespace LAB1
     public class Program
     {
         [STAThread]
-        public static void Main()
+        public static void Main(string[] args)
         {
             try
             {
                 Console.OutputEncoding = Encoding.UTF8;
-                string inputFilePath = "INPUT.TXT";
+                string inputFilePath = args.Length > 0 ? args[0] : "INPUT.TXT"; 
                 string outputFilePath = "OUTPUT.TXT";
 
                 string[] lines = File.ReadAllLines(inputFilePath);
@@ -41,16 +41,16 @@ namespace LAB1
                 string result = ProcessLines(lines);
                 File.WriteAllText(outputFilePath, result.Trim());
 
-                Console.WriteLine("Файл OUTPUT.TXT успішно створено");
-                Console.WriteLine("Лабораторна №1");
-                Console.WriteLine("Вхідні дані:");
+                Console.WriteLine("File OUTPUT.TXT successfully created");
+                Console.WriteLine("LAB #1");
+                Console.WriteLine("Input data:");
                 Console.WriteLine(string.Join(Environment.NewLine, lines).Trim());
-                Console.WriteLine("Вихідні дані:");
+                Console.WriteLine("Output data:");
                 Console.WriteLine(result.Trim());
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Помилка: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
             Console.WriteLine('\n');
         }
@@ -59,19 +59,19 @@ namespace LAB1
         {
             if (lines.Length > 32)
             {
-                throw new InvalidOperationException("Кількість інгредієнтів не повинна перевищувати 32.");
+                throw new InvalidOperationException("The number of ingredients should not exceed 32.");
             }
 
             foreach (string line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line) || line.Contains(" "))
                 {
-                    throw new InvalidOperationException("В одному рядку може бути тільки одне число.");
+                    throw new InvalidOperationException("There can be only one number in one line.");
                 }
 
                 if (!int.TryParse(line.Trim(), out int N) || N <= 0)
                 {
-                    throw new InvalidOperationException($"'{line}' не є дійсним числом.");
+                    throw new InvalidOperationException($"'{line}' is not a real number.");
                 }
             }
         }
