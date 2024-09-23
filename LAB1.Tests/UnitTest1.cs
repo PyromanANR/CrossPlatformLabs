@@ -27,6 +27,15 @@ namespace LAB1.Tests
         }
 
         [Fact]
+        public void Test_InputExceedsLimit2()
+        {
+            string[] lines = new string[32]; // Більше 32 рядків
+
+            var ex = Record.Exception(() => Program.ValidateInput(lines));
+            Assert.NotNull(ex);
+        }
+
+        [Fact]
         public void Test_InvalidNumberFormat()
         {
             string[] lines = { "abc" };
