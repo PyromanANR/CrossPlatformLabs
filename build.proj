@@ -9,12 +9,14 @@
   <Target Name="RunTests" DependsOnTargets="BuildSolution">
     <Exec Command="dotnet test LAB1.Tests/LAB1.Tests.csproj" />
 	<Exec Command="dotnet test LAB2.Tests/LAB2.Tests.csproj" />
+	<Exec Command="dotnet test LAB3.Tests/LAB3.Tests.csproj" />
   </Target>
 
   <!-- Ціль для запуску проекту LABS -->
   <Target Name="RunLABS" DependsOnTargets="BuildSolution">
    <Exec Command="dotnet run --project LAB1/LAB1.csproj -- LAB1\INPUT.TXT" />
    <Exec Command="dotnet run --project LAB2/LAB2.csproj -- LAB2\INPUT.TXT" />
+   <Exec Command="dotnet run --project LAB3/LAB3.csproj -- LAB3\INPUT.TXT" />
   </Target>
 
   <!-- Ціль для побудови, тестування і запуску LABS -->
