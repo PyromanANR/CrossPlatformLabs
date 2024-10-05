@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LAB4": {
+      "commandName": "Project",
+      "commandLineArgs": "run lab1 --input LAB1\\INPUT.TXT --output LAB1\\OUTPUT.TXT\r\n"
+    }
+  }
+}
