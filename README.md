@@ -14,18 +14,18 @@
 # LAB1-3 INFO:
 Запустити лабораторну:
 ```bash
-dotnet build Build.proj -t:Run -p:Solution=Lab1
+dotnet build Build.proj -t:Run -p:Solution=LAB1
 ```
 Білд:
 ```bash
-dotnet build Build.proj -t:Build -p:Solution=Lab1
+dotnet build Build.proj -t:Build -p:Solution=LAB1
 ```
 Тести:
 ```bash
-dotnet build Build.proj -t:Test -p:Solution=Lab1
+dotnet build Build.proj -t:Test -p:Solution=LAB1
 ```
 
-Де `Lab1` може бути замінена на `Lab2`, щоб запустити лабораторну №2, `Lab3` - лабораторна №3, тощо
+Де `LAB1` може бути замінена на `LAB2`, щоб запустити лабораторну №2, `LAB3` - лабораторна №3, тощо
 
 # LAB4 INFO:
 ## Successfully ran programs in virtual environment windows and ubunta for macOS requires an Apple device 
