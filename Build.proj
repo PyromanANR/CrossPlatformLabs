@@ -3,8 +3,7 @@
   <!-- Загальні властивості -->
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <!-- Якщо $(Solution) не визначений, наприклад, встановлюємо LAB1 -->
-    <Solution Condition="'$(Solution)' == ''">LAB1</Solution>
+    <Solution Condition="'$(Solution)' == ''"></Solution>
   </PropertyGroup>
 
   <!-- Визначення основного проекту та тестового проекту -->
