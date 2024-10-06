@@ -10,8 +10,22 @@
 
 1. Відкрийте термінал Developer PowerShell for VS 2022
 2. Перейдіть до кореневої папки проекту
-3. Запустіть команду для старту проекту: msbuild build.proj
 
+# LAB1-3 INFO:
+Запустити лабораторну:
+```bash
+dotnet build Build.proj -t:Run -p:Solution=LAB1
+```
+Білд:
+```bash
+dotnet build Build.proj -t:Build -p:Solution=LAB1
+```
+Тести:
+```bash
+dotnet build Build.proj -t:Test -p:Solution=LAB1
+```
+
+Де `LAB1` може бути замінена на `LAB2`, щоб запустити лабораторну №2, `LAB3` - лабораторна №3, тощо
 
 # LAB4 INFO:
 ## Successfully ran programs in virtual environment windows and ubunta for macOS requires an Apple device 
