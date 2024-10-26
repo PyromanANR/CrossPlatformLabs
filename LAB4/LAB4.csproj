@@ -4,7 +4,6 @@
     <ProjectReference Include="..\LAB1\LAB1.csproj" />
     <ProjectReference Include="..\LAB2\LAB2.csproj" />
     <ProjectReference Include="..\LAB3\LAB3.csproj" />
-    <ProjectReference Include="..\MyLibrary\MyLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
