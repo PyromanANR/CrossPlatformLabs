@@ -1,0 +1,107 @@
+﻿@model LabViewModel
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Лабораторна робота №@Model.TaskNumber</h2>
+            <h4>Варіант @Model.TaskVariant</h4>
+        </div>
+
+        <div class="card-body">
+            <!-- Опис завдання -->
+            <div class="mb-4">
+                <h5>Завдання:</h5>
+                <p>@Model.TaskDescription</p>
+
+                <h5>Вхідні дані:</h5>
+                <p>@Model.InputDescription</p>
+
+                <h5>Вихідні дані:</h5>
+                <p>@Model.OutputDescription</p>
+            </div>
+
+            <!-- Приклади -->
+            <div class="mb-4">
+                <h5>Приклади:</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>INPUT.TXT</th>
+                            <th>OUTPUT.TXT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var test in Model.TestCases)
+                        {
+                            <tr>
+                                <td><pre>@test.Input</pre></td>
+                                <td><pre>@test.Output</pre></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Форма завантаження -->
+            <div class="card">
+                <div class="card-body">
+                    <h5>Перевірка розв'язку:</h5>
+                    <form id="labForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="inputFile" class="form-label">Вхідний файл:</label>
+                            <input type="file" class="form-control" id="inputFile" name="inputFile" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Вміст вхідного файлу:</label>
+                            <textarea class="form-control" id="inputContent" rows="4" readonly></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Результат:</label>
+                            <textarea class="form-control" id="outputContent" rows="4" readonly></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Перевірити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#inputFile').change(function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#inputContent').val(e.target.result);
+                };
+                reader.readAsText(file);
+            });
+
+            $('#labForm').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData();
+                formData.append('inputFile', $('#inputFile')[0].files[0]);
+                formData.append('labNumber', '@Model.TaskNumber');
+
+                $.ajax({
+                    url: '@Url.Action("ProcessLab", "Lab")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#outputContent').val(response.output);
+                    },
+                    error: function(error) {
+                        alert('Error: ' + error.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+}

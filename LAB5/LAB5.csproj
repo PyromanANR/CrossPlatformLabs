@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LAB1\LAB1.csproj" />
+    <ProjectReference Include="..\LAB2\LAB2.csproj" />
+    <ProjectReference Include="..\LAB3\LAB3.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LAB5</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -25,7 +26,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" href="#" role="button" id="navbarDropdown"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Лабораторні роботи
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class='d-flex flex-column align-items-center'>
+                                        <a asp-controller="Lab" asp-action="Lab1" class='btn btn-primary w-100 my-1'>Лабораторна 1</a>
+                                        <a asp-controller="Lab" asp-action="Lab2" class='btn btn-secondary w-100 my-1'>Лабораторна 2</a>
+                                        <a asp-controller="Lab" asp-action="Lab3" class='btn btn-dark w-100 my-1'>Лабораторна 3</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </ul>
+
 
                         <!-- Профіль -->
                         @if (User.Identity.IsAuthenticated)
