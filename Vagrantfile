@@ -15,8 +15,8 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.network :private_network, ip: hosts["ubuntu"]
     ubuntu.vm.provider "virtualbox" do |v|
       v.name = "Ubuntu VM"
-      v.memory = "2048"
-      v.cpus = 2
+      v.memory = "8048"
+      v.cpus = 10
     end
     ubuntu.vm.synced_folder ".", "/home/vagrant/project"
     ubuntu.vm.provision "shell", path: "provision-ubuntu.sh"
@@ -36,15 +36,15 @@ Vagrant.configure("2") do |config|
   end
 
   # Mac Machine Configuration
-  config.vm.define "mac" do |mac|
-    mac.vm.box = "ramsey/macos-catalina"
-    mac.vm.network :private_network, ip: hosts["mac"]
-    mac.vm.provider "virtualbox" do |v|
-      v.name = "Mac VM"
-      v.memory = "4096"
-      v.cpus = 2
-    end
-    mac.vm.synced_folder ".", "/Users/vagrant/project"
-    mac.vm.provision "shell", path: "provision-mac.sh"
-  end
+  #config.vm.define "mac" do |mac|
+    #mac.vm.box = "ramsey/macos-catalina"
+   # mac.vm.network :private_network, ip: hosts["mac"]
+    #mac.vm.provider "virtualbox" do |v|
+    #  v.name = "Mac VM"
+    #  v.memory = "4096"
+     # v.cpus = 2
+   # end
+   # mac.vm.synced_folder ".", "/Users/vagrant/project"
+   # mac.vm.provision "shell", path: "provision-mac.sh"
+  #end
 end

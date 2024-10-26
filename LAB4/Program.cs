@@ -37,18 +37,18 @@ class VersionCommand
 class RunCommand
 {
     [Argument(0, "lab", "Specify lab to run (lab1)")]
-    public string Lab { get; set; }
+    public string? Lab { get; set; }
 
     [Option("-I|--input", "Input file", CommandOptionType.SingleValue)]
-    public string InputFile { get; set; }
+    public string? InputFile { get; set; }
 
     [Option("-o|--output", "Output file", CommandOptionType.SingleValue)]
-    public string OutputFile { get; set; }
+    public string? OutputFile { get; set; }
 
 
     private void OnExecute()
     {
-        string labPath = GetLabDirectory(Lab);
+        string? labPath = GetLabDirectory(Lab);
         if (labPath == null)
         {
             Console.WriteLine($"Unknown lab '{Lab}'. Available labs: lab1.");
@@ -87,7 +87,7 @@ class RunCommand
         Console.WriteLine($"Lab {Lab} processed. Output saved to {outputFilePath}");
     }
 
-    private string GetLabDirectory(string labName)
+    private string? GetLabDirectory(string labName)
     {
         string projectRoot = Directory.GetCurrentDirectory();
 
@@ -110,7 +110,7 @@ class RunCommand
 class SetPathCommand
 {
     [Option("-p|--path", "Path to input/output files", CommandOptionType.SingleValue)]
-    public string Path { get; set; }
+    public required string Path { get; set; }
 
     private void OnExecute()
     {
