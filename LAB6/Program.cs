@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -10,7 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API V1", Version = "v1" });
+    c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "v2" });
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+});
 
 // У файлі Program.cs для ASP.NET Core 6+
 builder.Services.AddControllers()
@@ -40,6 +48,16 @@ switch (databaseType)
             options.UseInMemoryDatabase("InMemoryDb"));
         break;
 }
+
+
+// Add versioning configuration
+builder.Services.AddApiVersioning(options =>
+{
+    options.ReportApiVersions = true;
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0); // Default to v1
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+});
 
 // Configure JWT Authentication
 builder.Services.AddAuthentication(options =>

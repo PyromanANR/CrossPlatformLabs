@@ -1,0 +1,34 @@
+﻿@{
+    var addressV1 = ViewData["AddressV1"] as LAB5.Models.Address;
+    var addressV2 = ViewData["AddressV2"] as LAB5.Models.Address;
+}
+
+<h2>Address Data</h2>
+
+@if (addressV1 != null)
+{
+    <h3>Address (API v1)</h3>
+    <p>@addressV1.Line1, @addressV1.Line2, @addressV1.TownCity, @addressV1.ZipPostcode, @addressV1.Country</p>
+}
+
+@if (addressV2 != null)
+{
+    <h3>Address (API v2)</h3>
+    <p>@addressV2.Line1, @addressV2.Line2, @addressV2.TownCity, @addressV2.ZipPostcode, @addressV2.Country</p>
+
+    <h4>Branches:</h4>
+    <ul>
+        @foreach (var branch in addressV2.Branches?.Values ?? new List<Branch>())
+        {
+            <li>@branch.BranchDetails (@branch.BranchTypeCode)</li>
+        }
+    </ul>
+
+    <h4>Customers:</h4>
+    <ul>
+        @foreach (var customer in addressV2.Customers?.Values ?? new List<Customer>())
+        {
+            <li>@customer.PersonalDetails (@customer.ContactDetails)</li>
+        }
+    </ul>
+}

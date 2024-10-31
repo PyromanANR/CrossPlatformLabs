@@ -235,5 +235,23 @@ namespace LAB5.Services
             }
         }
 
+
+        public async Task<Address> GetAddressAsync(int addressId, string apiVersion = "v1")
+        {
+            var response = await _httpClient.GetAsync($"api/{apiVersion}/addresses/{addressId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Error fetching address: {response.StatusCode} - {errorContent}");
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Received JSON from API {apiVersion}: {json}");
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            return JsonSerializer.Deserialize<Address>(json, options);
+        }
+
     }
 }
