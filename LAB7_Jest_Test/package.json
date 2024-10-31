@@ -1,0 +1,23 @@
+{
+  "name": "lab7_jest_test",
+  "version": "1.0.0",
+  "description": "API testing with Jest and logging",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "axios": "^1.7.7",
+    "winston": "^3.15.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 10000,
+    "setupFilesAfterEnv": [ "./jest.setup.js" ]
+  }
+}
