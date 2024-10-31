@@ -1,0 +1,16 @@
+2024-10-31 19:52:53 [INFO]: Starting test suite execution
+2024-10-31 19:52:53 [INFO]: Starting Accounts API tests
+2024-10-31 19:52:53 [INFO]: Testing GET /api/accounts endpoint
+2024-10-31 19:52:54 [INFO]: Received {"$id":"1","$values":[{"$id":"2","accountNumber":1,"accountStatusCode":"ACT","accountTypeCode":"SAV","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","currentBalance":5000,"otherDetails":"Primary Savings Account","customer":null,"accountType":null,"transactions":null},{"$id":"3","accountNumber":2,"accountStatusCode":"ACT","accountTypeCode":"CHK","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","currentBalance":2500,"otherDetails":"Primary Checking Account","customer":null,"accountType":null,"transactions":null},{"$id":"4","accountNumber":3,"accountStatusCode":"ACT","accountTypeCode":"SAV","customerId":"9089e34f-e5ef-4905-a4a9-ed54de875fe0","currentBalance":7500,"otherDetails":"High-Interest Savings Account","customer":null,"accountType":null,"transactions":null}]} accounts
+2024-10-31 19:52:54 [INFO]: Testing GET /api/accounts/1 endpoint
+2024-10-31 19:52:54 [INFO]: Successfully retrieved account 1
+2024-10-31 19:52:54 [INFO]: Finished Accounts API tests
+2024-10-31 19:52:54 [INFO]: Starting References API tests
+2024-10-31 19:52:54 [INFO]: Testing GET /api/references/customers endpoint
+2024-10-31 19:52:54 [INFO]: Received {"$id":"1","$values":[{"$id":"2","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","addressId":3,"branchId":"11206042-e60a-4ae6-88f7-860d4ac2ccb8","personalDetails":"John Smith","contactDetails":"Tel: 555-0123, Email: john.smith@email.com","address":null,"branch":null,"accounts":null},{"$id":"3","customerId":"9089e34f-e5ef-4905-a4a9-ed54de875fe0","addressId":4,"branchId":"ed002845-edf4-4f97-a83b-3aeeb903ecc9","personalDetails":"Jane Doe","contactDetails":"Tel: 555-0124, Email: jane.doe@email.com","address":null,"branch":null,"accounts":null}]} customers
+2024-10-31 19:52:54 [INFO]: Finished References API tests
+2024-10-31 19:52:54 [INFO]: Starting Database Integration tests
+2024-10-31 19:52:54 [INFO]: Testing SQL Server connection
+2024-10-31 19:52:54 [INFO]: Successfully connected to SQL Server
+2024-10-31 19:52:54 [INFO]: Finished Database Integration tests
+2024-10-31 19:52:54 [INFO]: Finished test suite execution
