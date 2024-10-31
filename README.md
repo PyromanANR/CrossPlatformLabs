@@ -43,5 +43,22 @@ https://forums.virtualbox.org/viewtopic.php?f=6&t=92649
 ![image](https://github.com/user-attachments/assets/e1173fcf-7aaf-46b6-b467-55af5060a6e2)
 ![image](https://github.com/user-attachments/assets/76478ead-9c4b-40c3-aa46-95f2256822b7)
 
+# LAB6 INFO:
+## Succesfully run on ubuntu API. I made several routes according to the task
+![image](https://github.com/user-attachments/assets/de5f9b83-f643-4851-a345-845aca45a534)
+
+### Create DB VAR2
+![image](https://github.com/user-attachments/assets/f5122043-0944-45ef-ae19-201d6158fd58)
+
+### Routes
+![image](https://github.com/user-attachments/assets/45e1eb9d-6e4a-4a51-9a89-1bfc83b2272d)
+
+### Pages
+![image](https://github.com/user-attachments/assets/87bc1b5e-ae9c-49b3-a769-426d904f6f10)
+![image](https://github.com/user-attachments/assets/421b9792-2d31-432c-a72a-98473cb41a52)
+![image](https://github.com/user-attachments/assets/e00b5977-dad7-4d8c-8efe-05924a2cbcdb)
+
+
+
 
 
