@@ -63,6 +63,9 @@ SqLite
 ![image](https://github.com/user-attachments/assets/421b9792-2d31-432c-a72a-98473cb41a52)
 ![image](https://github.com/user-attachments/assets/e00b5977-dad7-4d8c-8efe-05924a2cbcdb)
 
+# LAB7 INFO:
+## Different versions of the app have been successfully created. Also, using Jest, we tested the behavior of the api in accordance with different databases and situations 
+![image](https://github.com/user-attachments/assets/5a1b6742-3219-4e56-bae6-baf6b6520cec)
 
 
 
