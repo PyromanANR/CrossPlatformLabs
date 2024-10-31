@@ -17,7 +17,7 @@ namespace LAB5.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+
         public IActionResult Index()
         {
             return View();

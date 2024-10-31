@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Convert Time to Ukrainian Time";
+}
+
+<h2>Convert Time to Ukrainian Time</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="inputDate">(2024-10-29 22:15:01.2871118) Enter Date and Time:</label>
+        <input type="text" class="form-control" id="inputDate" name="inputDate" placeholder="e.g. 2024-10-31 15:00" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Convert</button>
+</form>
+
+@if (ViewBag.UkrainianTime != null)
+{
+    <h4>Converted Time: @ViewBag.UkrainianTime</h4>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}

@@ -41,6 +41,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <a class="nav-link text-dark" asp-controller="TableView" asp-action="Index">TableView(LAB6)</a>
+                            <a class="nav-link text-dark" asp-controller="SearchMvc" asp-action="Index">Search(LAB6)</a>
+                            <a class="nav-link text-dark" asp-controller="Time" asp-action="Index">Time(LAB6)</a>
+
                         }
                     </ul>
 
@@ -65,6 +69,7 @@
                         }
                         else
                         {
+                        <div class="dropdown">
                             <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
@@ -72,6 +77,7 @@
                                 </a>
                             </li>
                             </ul>
+                        </div>
                         }
                 </div>
             </div>

@@ -1,0 +1,79 @@
+﻿@model LAB5.Models.AccountsAndCustomersAndTransactionViewModel
+
+@{
+    ViewData["Title"] = "Accounts and Customers and Transactions";
+}
+
+<h2>Accounts</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model.Accounts)
+        {
+            <tr>
+                <td>@account.AccountNumber</td>
+                <td>@account.AccountStatusCode</td>
+                <td>@account.AccountTypeCode</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@account.AccountNumber">View Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Customers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Personal Details</th>
+            <th>Contact Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.CustomerId</td>
+                <td>@customer.PersonalDetails</td>
+                <td>@customer.ContactDetails</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Transactions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Account Number</th>
+            <th>Transaction Type</th>
+            <th>Transaction Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model.Transactions)
+        {
+            <tr>
+                <td>@transaction.TransactionId</td>
+                <td>@transaction.AccountNumber</td>
+                <td>@transaction.TransactionTypeCode</td>
+                <td>@transaction.TransactionDateTime.ToString("g")</td> <!-- Format as needed -->
+                <td>@transaction.TransactionAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>

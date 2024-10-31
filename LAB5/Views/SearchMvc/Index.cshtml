@@ -1,0 +1,115 @@
+﻿@model LAB5.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search Transactions</h2>
+
+<form asp-action="SearchTransactions" method="post">
+    <div class="form-group">
+        <label>Start Date</label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search Transactions</button>
+</form>
+
+@if (Model.Transactions != null && Model.Transactions.Count > 0)
+{
+    <h3>Transaction Results</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Account Number</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model.Transactions)
+            {
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.AccountNumber</td>
+                    <td>@transaction.TransactionDateTime.ToString("g")</td>
+                    <td>@transaction.TransactionAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h2>Search Customers</h2>
+
+<form asp-action="SearchCustomers" method="post">
+    <div class="form-group">
+        <label>Personal Details</label>
+        <input asp-for="PersonalDetail" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search Customers</button>
+</form>
+
+@if (Model.Customers != null && Model.Customers.Count > 0)
+{
+    <h3>Customer Results</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Personal Details</th>
+                <th>Contact Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.CustomerId</td>
+                    <td>@customer.PersonalDetails</td>
+                    <td>@customer.ContactDetails</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h2>Search Accounts</h2>
+
+<form asp-action="SearchAccounts" method="post">
+    <div class="form-group">
+        <label>Account IDs (comma separated)</label>
+        <input asp-for="AccountIds" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search Accounts</button>
+</form>
+
+@if (Model.Accounts != null && Model.Accounts.Count > 0)
+{
+    <h3>Account Results</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Current Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model.Accounts)
+            {
+                <tr>
+                    <td>@account.AccountNumber</td>
+                    <td>@account.AccountStatusCode</td>
+                    <td>@account.AccountTypeCode</td>
+                    <td>@account.CurrentBalance</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

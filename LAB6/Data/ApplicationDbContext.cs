@@ -39,49 +39,58 @@ namespace LAB6.Data
             // Configure relationships
 
             modelBuilder.Entity<Branch>()
-                .HasOne(b => b.Bank)
-                .WithMany(bk => bk.Branches)
-                .HasForeignKey(b => b.BankId);
+        .HasOne(b => b.Bank)
+        .WithMany(bk => bk.Branches)
+        .HasForeignKey(b => b.BankId)
+        .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Branch>()
                 .HasOne(b => b.Address)
                 .WithMany(a => a.Branches)
-                .HasForeignKey(b => b.AddressId);
+                .HasForeignKey(b => b.AddressId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Branch>()
                 .HasOne(b => b.BranchType)
                 .WithMany(rt => rt.Branches)
-                .HasForeignKey(b => b.BranchTypeCode);
+                .HasForeignKey(b => b.BranchTypeCode)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Customer>()
                 .HasOne(c => c.Branch)
                 .WithMany(b => b.Customers)
-                .HasForeignKey(c => c.BranchId);
+                .HasForeignKey(c => c.BranchId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Customer>()
                 .HasOne(c => c.Address)
                 .WithMany(a => a.Customers)
-                .HasForeignKey(c => c.AddressId);
+                .HasForeignKey(c => c.AddressId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Account>()
                 .HasOne(a => a.Customer)
                 .WithMany(c => c.Accounts)
-                .HasForeignKey(a => a.CustomerId);
+                .HasForeignKey(a => a.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Account>()
                 .HasOne(a => a.AccountType)
                 .WithMany(rt => rt.Accounts)
-                .HasForeignKey(a => a.AccountTypeCode);
+                .HasForeignKey(a => a.AccountTypeCode)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Models.Transaction>()
                 .HasOne(t => t.Account)
                 .WithMany(a => a.Transactions)
-                .HasForeignKey(t => t.AccountNumber);
+                .HasForeignKey(t => t.AccountNumber)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Models.Transaction>()
                 .HasOne(t => t.TransactionType)
                 .WithMany(tt => tt.Transactions)
-                .HasForeignKey(t => t.TransactionTypeCode);
+                .HasForeignKey(t => t.TransactionTypeCode)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Configure field properties
             modelBuilder.Entity<Bank>().Property(b => b.BankId).ValueGeneratedOnAdd();
@@ -94,49 +103,224 @@ namespace LAB6.Data
 
         public void Seed()
         {
-            // Перевіряємо, чи вже є дані, щоб уникнути дублювання
-            if (!Banks.Any())
-            {
-                var banks = new List<Bank>
-            {
-                new Bank { BankId = Guid.NewGuid(), BankDetails = "Bank A" },
-                new Bank { BankId = Guid.NewGuid(), BankDetails = "Bank B" }
-            };
-                Banks.AddRange(banks);
-                SaveChanges();
+            if (Addresses.Any()) return;
 
-                var branches = new List<Branch>
+            // 1. Seed Reference Tables with fixed-length codes
+            var accountTypes = new List<RefAccountType>
             {
-                new Branch { BranchId = Guid.NewGuid(), BankId = banks[0].BankId, BranchTypeCode = "URB", BranchDetails = "Main Branch" },
-                new Branch { BranchId = Guid.NewGuid(), BankId = banks[1].BankId, BranchTypeCode = "RUR", BranchDetails = "Rural Branch" }
+                new RefAccountType
+                {
+                    AccountTypeCode = "SAV",            // Using CHAR(15) format
+                    AccountTypeDescription = "Savings Account"
+                },
+                new RefAccountType
+                {
+                    AccountTypeCode = "CHK",
+                    AccountTypeDescription = "Checking Account"
+                },
+                new RefAccountType
+                {
+                    AccountTypeCode = "BUS",
+                    AccountTypeDescription = "Business Account"
+                }
             };
-                Branches.AddRange(branches);
-                SaveChanges();
+            RefAccountTypes.AddRange(accountTypes);
+            SaveChanges();
 
-                var customers = new List<Customer>
+            var branchTypes = new List<RefBranchType>
             {
-                new Customer { CustomerId = Guid.NewGuid(), BranchId = branches[0].BranchId, PersonalDetails = "John Doe", ContactDetails = "john@example.com" },
-                new Customer { CustomerId = Guid.NewGuid(), BranchId = branches[1].BranchId, PersonalDetails = "Jane Smith", ContactDetails = "jane@example.com" }
+                new RefBranchType
+                {
+                    BranchTypeCode = "MAIN",           // Using CHAR(15) format
+                    BranchTypeDescription = "Main Branch Office"
+                },
+                new RefBranchType
+                {
+                    BranchTypeCode = "SAT",
+                    BranchTypeDescription = "Satellite Branch"
+                }
             };
-                Customers.AddRange(customers);
-                SaveChanges();
+            RefBranchTypes.AddRange(branchTypes);
+            SaveChanges();
 
-                var accounts = new List<Account>
+            var transactionTypes = new List<RefTransactionType>
             {
-                new Account { AccountNumber = 1, CustomerId = customers[0].CustomerId, AccountTypeCode = "CHK", CurrentBalance = 1000.00M, OtherDetails = "Primary Checking Account" },
-                new Account { AccountNumber = 2, CustomerId = customers[1].CustomerId, AccountTypeCode = "SAV", CurrentBalance = 5000.00M, OtherDetails = "Primary Savings Account" }
+                new RefTransactionType
+                {
+                    TransactionTypeCode = "DEP",        // Using CHAR(15) format
+                    TransactionTypeDescription = "Deposit"
+                },
+                new RefTransactionType
+                {
+                    TransactionTypeCode = "WD",
+                    TransactionTypeDescription = "Withdrawal"
+                },
+                new RefTransactionType
+                {
+                    TransactionTypeCode = "TRF",
+                    TransactionTypeDescription = "Transfer"
+                }
             };
-                Accounts.AddRange(accounts);
-                SaveChanges();
+            RefTransactionTypes.AddRange(transactionTypes);
+            SaveChanges();
 
-                var transactions = new List<Models.Transaction>
+            // 2. Let SQL Server handle the AddressId identity
+            var addresses = new List<Address>
             {
-                new Models.Transaction { TransactionId = Guid.NewGuid(), AccountNumber = accounts[0].AccountNumber, TransactionTypeCode = "DEP", TransactionDateTime = DateTime.Now, TransactionAmount = 100.00M, OtherDetails = "Initial Deposit" },
-                new Models.Transaction { TransactionId = Guid.NewGuid(), AccountNumber = accounts[1].AccountNumber, TransactionTypeCode = "WDL", TransactionDateTime = DateTime.Now, TransactionAmount = 50.00M, OtherDetails = "ATM Withdrawal" }
+                new Address
+                {
+                    Line1 = "123 Main Street",
+                    Line2 = "Suite 100",
+                    TownCity = "New York",
+                    ZipPostcode = "10001",
+                    StateProvinceCounty = "NY",
+                    Country = "USA",
+                    OtherDetails = "Main Office Location"
+                },
+                new Address
+                {
+                    Line1 = "456 Market Street",
+                    Line2 = "Suite 150",
+                    TownCity = "Los Angeles",
+                    ZipPostcode = "90012",
+                    StateProvinceCounty = "CA",
+                    Country = "USA",
+                    OtherDetails = "West Coast Branch"
+                }
             };
-                Transactions.AddRange(transactions);
-                SaveChanges();
-            }
+            Addresses.AddRange(addresses);
+            SaveChanges();
+
+            // 3. Seed Banks
+            var banks = new List<Bank>
+            {
+                new Bank
+                {
+                    BankId = Guid.NewGuid(),
+                    BankDetails = "Global Bank Corporation"
+                },
+                new Bank
+                {
+                    BankId = Guid.NewGuid(),
+                    BankDetails = "City Financial Services"
+                }
+            };
+            Banks.AddRange(banks);
+            SaveChanges();
+
+            // 4. Seed Branches
+            var branches = new List<Branch>
+            {
+                new Branch
+                {
+                    BranchId = Guid.NewGuid(),
+                    AddressId = addresses[0].AddressId,  // Now using generated AddressId
+                    BankId = banks[0].BankId,
+                    BranchTypeCode = "MAIN",
+                    BranchDetails = "Main Headquarters Branch"
+                },
+                new Branch
+                {
+                    BranchId = Guid.NewGuid(),
+                    AddressId = addresses[1].AddressId,  // Now using generated AddressId
+                    BankId = banks[0].BankId,
+                    BranchTypeCode = "SAT",
+                    BranchDetails = "West LA Branch Office"
+                }
+            };
+            Branches.AddRange(branches);
+            SaveChanges();
+
+            // 5. Seed Customers
+            var customers = new List<Customer>
+            {
+                new Customer
+                {
+                    CustomerId = Guid.NewGuid(),
+                    AddressId = addresses[0].AddressId,
+                    BranchId = branches[0].BranchId,
+                    PersonalDetails = "John Smith",
+                    ContactDetails = "Tel: 555-0123, Email: john.smith@email.com"
+                },
+                new Customer
+                {
+                    CustomerId = Guid.NewGuid(),
+                    AddressId = addresses[1].AddressId,
+                    BranchId = branches[1].BranchId,
+                    PersonalDetails = "Jane Doe",
+                    ContactDetails = "Tel: 555-0124, Email: jane.doe@email.com"
+                }
+            };
+            Customers.AddRange(customers);
+            SaveChanges();
+
+            // 6. Let SQL Server handle the AccountNumber identity
+            var accounts = new List<Account>
+            {
+                new Account
+                {
+                    AccountStatusCode = "ACT",
+                    AccountTypeCode = "SAV",
+                    CustomerId = customers[0].CustomerId,
+                    CurrentBalance = 5000.00M,
+                    OtherDetails = "Primary Savings Account"
+                },
+                new Account
+                {
+                    AccountStatusCode = "ACT",
+                    AccountTypeCode = "CHK",
+                    CustomerId = customers[0].CustomerId,
+                    CurrentBalance = 2500.00M,
+                    OtherDetails = "Primary Checking Account"
+                },
+                new Account
+                {
+                    AccountStatusCode = "ACT",
+                    AccountTypeCode = "SAV",
+                    CustomerId = customers[1].CustomerId,
+                    CurrentBalance = 7500.00M,
+                    OtherDetails = "High-Interest Savings Account"
+                }
+            };
+            Accounts.AddRange(accounts);
+            SaveChanges();
+
+            // 7. Seed Transactions
+            var transactions = new List<Models.Transaction>
+            {
+                new Models.Transaction
+                {
+                    TransactionId = Guid.NewGuid(),
+                    AccountNumber = 1,  // Reference the first account
+                    MerchantId = 1,
+                    TransactionTypeCode = "DEP",
+                    TransactionDateTime = DateTime.Now.AddDays(-5),
+                    TransactionAmount = 1000.00M,
+                    OtherDetails = "Initial deposit"
+                },
+                new Models.Transaction
+                {
+                    TransactionId = Guid.NewGuid(),
+                    AccountNumber = 2,  // Reference the second account
+                    MerchantId = 2,
+                    TransactionTypeCode = "WD",
+                    TransactionDateTime = DateTime.Now.AddDays(-3),
+                    TransactionAmount = -500.00M,
+                    OtherDetails = "ATM withdrawal"
+                },
+                new Models.Transaction
+                {
+                    TransactionId = Guid.NewGuid(),
+                    AccountNumber = 3,  // Reference the third account
+                    MerchantId = 3,
+                    TransactionTypeCode = "TRF",
+                    TransactionDateTime = DateTime.Now.AddDays(-1),
+                    TransactionAmount = 2500.00M,
+                    OtherDetails = "Wire transfer deposit"
+                }
+            };
+            Transactions.AddRange(transactions);
+            SaveChanges();
         }
     }
 }
