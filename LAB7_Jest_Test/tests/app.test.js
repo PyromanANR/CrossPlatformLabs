@@ -76,6 +76,71 @@ describe('References API Tests', () => {
     });
 });
 
+describe('Search API Tests', () => {
+    beforeAll(() => {
+        logger.info('Starting Search API tests');
+    });
+
+    afterAll(() => {
+        logger.info('Finished Search API tests');
+    });
+
+    test('GET /api/search/transactions should return transactions within a date range', async () => {
+        const startDate = '2024-01-01T00:00:00Z';
+        const endDate = '2024-12-31T23:59:59Z';
+        try {
+            logger.info(`Testing GET /api/search/transactions with startDate=${startDate} and endDate=${endDate}`);
+            const response = await axiosInstance.get(`/search/transactions`, {
+                params: { startDate, endDate }
+            });
+
+            logger.info(`Received transactions: ${JSON.stringify(response.data)}`);
+            expect(response.status).toBe(200);
+            expect(Array.isArray(response.data.$values)).toBe(true);
+        } catch (error) {
+            logger.error(`Error testing GET /api/search/transactions: ${error.message}`);
+            throw error;
+        }
+    });
+
+
+    test('GET /api/search/customers should return customers matching personal details', async () => {
+        const personalDetail = 'Jane Doe';
+        try {
+            logger.info(`Testing GET /api/search/customers with personalDetail=${personalDetail}`);
+            const response = await axiosInstance.get(`/search/customers`, {
+                params: { personalDetail }
+            });
+
+            logger.info(`Received customers: ${JSON.stringify(response.data)}`);
+            expect(response.status).toBe(200);
+            expect(Array.isArray(response.data.$values)).toBe(true);
+        } catch (error) {
+            logger.error(`Error testing GET /api/search/customers: ${error.message}`);
+            throw error;
+        }
+    });
+
+    test('GET /api/search/accounts should return accounts matching provided IDs', async () => {
+        const accountIds = 1;
+        try {
+            logger.info(`Testing GET /api/search/accounts with accountIds=${accountIds}`);
+            const response = await axiosInstance.get(`/search/accounts`, {
+                params: { accountIds }
+            });
+
+            logger.info(`Received accounts: ${JSON.stringify(response.data)}`);
+            expect(response.status).toBe(200);
+            expect(Array.isArray(response.data.$values)).toBe(true);
+        } catch (error) {
+            logger.error(`Error testing GET /api/search/accounts: ${error.message}`);
+            throw error;
+        }
+    });
+
+   
+});
+
 
 describe('Database Integration Tests', () => {
     beforeAll(() => {
@@ -87,15 +152,15 @@ describe('Database Integration Tests', () => {
     });
 
     // SQL Server tests
-    describe('SQL Server', () => {
-        test('should perform basic operations with SQL Server', async () => {
+    describe('SQLLite Server', () => {
+        test('should perform basic operations with SQLLite Server', async () => {
             try {
                 logger.info('Testing SQL Server connection');
                 const response = await axiosInstance.get('/accounts');
-                logger.info('Successfully connected to SQL Server');
+                logger.info('Successfully connected to SQLLite Server');
                 expect(response.status).toBe(200);
             } catch (error) {
-                logger.error(`SQL Server test failed: ${error.message}`);
+                logger.error(`SQLLite Server test failed: ${error.message}`);
                 throw error;
             }
         });
