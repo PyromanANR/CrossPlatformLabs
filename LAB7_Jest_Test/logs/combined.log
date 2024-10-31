@@ -1,0 +1,24 @@
+2024-10-31 20:59:47 [INFO]: Starting test suite execution
+2024-10-31 20:59:47 [INFO]: Starting Accounts API tests
+2024-10-31 20:59:47 [INFO]: Testing GET /api/accounts endpoint
+2024-10-31 20:59:48 [INFO]: Received {"$id":"1","$values":[{"$id":"2","accountNumber":1,"accountStatusCode":"ACT","accountTypeCode":"SAV","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","currentBalance":5000,"otherDetails":"Primary Savings Account","customer":null,"accountType":null,"transactions":null},{"$id":"3","accountNumber":2,"accountStatusCode":"ACT","accountTypeCode":"CHK","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","currentBalance":2500,"otherDetails":"Primary Checking Account","customer":null,"accountType":null,"transactions":null},{"$id":"4","accountNumber":3,"accountStatusCode":"ACT","accountTypeCode":"SAV","customerId":"9089e34f-e5ef-4905-a4a9-ed54de875fe0","currentBalance":7500,"otherDetails":"High-Interest Savings Account","customer":null,"accountType":null,"transactions":null}]} accounts
+2024-10-31 20:59:48 [INFO]: Testing GET /api/accounts/1 endpoint
+2024-10-31 20:59:48 [INFO]: Successfully retrieved account 1
+2024-10-31 20:59:48 [INFO]: Finished Accounts API tests
+2024-10-31 20:59:48 [INFO]: Starting References API tests
+2024-10-31 20:59:48 [INFO]: Testing GET /api/references/customers endpoint
+2024-10-31 20:59:48 [INFO]: Received {"$id":"1","$values":[{"$id":"2","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","addressId":3,"branchId":"11206042-e60a-4ae6-88f7-860d4ac2ccb8","personalDetails":"John Smith","contactDetails":"Tel: 555-0123, Email: john.smith@email.com","address":null,"branch":null,"accounts":null},{"$id":"3","customerId":"9089e34f-e5ef-4905-a4a9-ed54de875fe0","addressId":4,"branchId":"ed002845-edf4-4f97-a83b-3aeeb903ecc9","personalDetails":"Jane Doe","contactDetails":"Tel: 555-0124, Email: jane.doe@email.com","address":null,"branch":null,"accounts":null}]} customers
+2024-10-31 20:59:48 [INFO]: Finished References API tests
+2024-10-31 20:59:48 [INFO]: Starting Search API tests
+2024-10-31 20:59:48 [INFO]: Testing GET /api/search/transactions with startDate=2024-01-01T00:00:00Z and endDate=2024-12-31T23:59:59Z
+2024-10-31 20:59:48 [INFO]: Received transactions: {"$id":"1","$values":[{"$id":"2","transactionId":"42c45e4e-3cb4-496a-ab82-1bd081b8e0ba","accountNumber":3,"merchantId":3,"transactionTypeCode":"TRF","transactionDateTime":"2024-10-29T22:15:01.2871118","transactionAmount":2500,"otherDetails":"Wire transfer deposit","account":null,"transactionType":null},{"$id":"3","transactionId":"8033e6f9-4d57-41ac-8f6b-79947a9d215d","accountNumber":1,"merchantId":1,"transactionTypeCode":"DEP","transactionDateTime":"2024-10-25T22:15:01.2870082","transactionAmount":1000,"otherDetails":"Initial deposit","account":null,"transactionType":null},{"$id":"4","transactionId":"675066fb-8ece-4d9e-9452-d905a02bf09e","accountNumber":2,"merchantId":2,"transactionTypeCode":"WD","transactionDateTime":"2024-10-27T22:15:01.2871108","transactionAmount":-500,"otherDetails":"ATM withdrawal","account":null,"transactionType":null}]}
+2024-10-31 20:59:48 [INFO]: Testing GET /api/search/customers with personalDetail=Jane Doe
+2024-10-31 20:59:48 [INFO]: Received customers: {"$id":"1","$values":[{"$id":"2","customerId":"9089e34f-e5ef-4905-a4a9-ed54de875fe0","addressId":4,"branchId":"ed002845-edf4-4f97-a83b-3aeeb903ecc9","personalDetails":"Jane Doe","contactDetails":"Tel: 555-0124, Email: jane.doe@email.com","address":null,"branch":null,"accounts":null}]}
+2024-10-31 20:59:48 [INFO]: Testing GET /api/search/accounts with accountIds=1
+2024-10-31 20:59:48 [INFO]: Received accounts: {"$id":"1","$values":[{"$id":"2","accountNumber":1,"accountStatusCode":"ACT","accountTypeCode":"SAV","customerId":"7dba5e5e-894c-487d-9045-c553b2f2f167","currentBalance":5000,"otherDetails":"Primary Savings Account","customer":null,"accountType":null,"transactions":{"$id":"3","$values":[{"$id":"4","transactionId":"8033e6f9-4d57-41ac-8f6b-79947a9d215d","accountNumber":1,"merchantId":1,"transactionTypeCode":"DEP","transactionDateTime":"2024-10-25T22:15:01.2870082","transactionAmount":1000,"otherDetails":"Initial deposit","account":{"$ref":"2"},"transactionType":{"$id":"5","transactionTypeCode":"DEP","transactionTypeDescription":"Deposit","transactions":{"$id":"6","$values":[{"$ref":"4"}]}}}]}}]}
+2024-10-31 20:59:48 [INFO]: Finished Search API tests
+2024-10-31 20:59:48 [INFO]: Starting Database Integration tests
+2024-10-31 20:59:48 [INFO]: Testing SQL Server connection
+2024-10-31 20:59:48 [INFO]: Successfully connected to SQLLite Server
+2024-10-31 20:59:48 [INFO]: Finished Database Integration tests
+2024-10-31 20:59:48 [INFO]: Finished test suite execution
