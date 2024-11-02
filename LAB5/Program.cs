@@ -2,6 +2,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Auth0.AspNetCore.Authentication;
 using LAB5.Services;
+using OpenTelemetry;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Metrics;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +22,32 @@ builder.Services.AddHttpClient<ApiService>(client =>
 {
     ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
 });
+
+var serviceName = "LAB8Service";
+var serviceVersion = "1.0.0";
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService(serviceName: serviceName, serviceVersion: serviceVersion))
+    .WithTracing(traceBuilder =>
+    {
+        traceBuilder
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddZipkinExporter(options =>
+            {
+                options.Endpoint = new Uri("http://localhost:9411/api/v2/spans");
+            });
+    })
+    .WithMetrics(metricsBuilder =>
+    {
+        metricsBuilder
+            .AddAspNetCoreInstrumentation()
+            .AddRuntimeInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddMeter("Microsoft.AspNetCore.Hosting")
+            .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+            .AddPrometheusExporter();
+    });
 
 
 builder.Services.AddAuth0WebAppAuthentication(options => {
@@ -71,10 +103,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

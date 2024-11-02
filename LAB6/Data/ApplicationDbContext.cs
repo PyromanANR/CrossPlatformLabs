@@ -98,7 +98,7 @@ namespace LAB6.Data
             modelBuilder.Entity<Customer>().Property(c => c.CustomerId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Models.Transaction>().Property(t => t.TransactionId).ValueGeneratedOnAdd();
 
-         
+
         }
 
         public void Seed()
@@ -322,6 +322,51 @@ namespace LAB6.Data
             Transactions.AddRange(transactions);
             SaveChanges();
         }
+
+        public void Seed10X()
+        {
+            const int numberOfRecords = 10000;
+            var random = new Random();
+
+            var accounts = Accounts.Select(a => a.AccountNumber).ToList();
+            var merchants = Enumerable.Range(1, 10).ToList(); // Assuming merchant IDs from 1 to 10
+            var transactionTypes = new[] { "DEP", "WD", "TRF" };
+
+            // List to batch add transactions
+            var transactions = new List<Models.Transaction>();
+
+            for (int i = 0; i < numberOfRecords; i++)
+            {
+                var transaction = new Models.Transaction
+                {
+                    TransactionId = Guid.NewGuid(),
+                    AccountNumber = accounts[random.Next(accounts.Count)], // Random account from existing ones
+                    MerchantId = merchants[random.Next(merchants.Count)], // Random merchant
+                    TransactionTypeCode = transactionTypes[random.Next(transactionTypes.Length)], // Random transaction type
+                    TransactionDateTime = DateTime.Now.AddDays(-random.Next(30)), // Random date within the last 30 days
+                    TransactionAmount = Math.Round((decimal)(random.NextDouble() * 2000 - 1000), 2), // Random amount between -1000 and 1000
+                    OtherDetails = "Automated transaction"
+                };
+
+                transactions.Add(transaction);
+
+                // Batch insert every 1000 transactions
+                if (transactions.Count >= 1000)
+                {
+                    Transactions.AddRange(transactions);
+                    SaveChanges();
+                    transactions.Clear();
+                }
+            }
+
+            // Add any remaining transactions
+            if (transactions.Count > 0)
+            {
+                Transactions.AddRange(transactions);
+                SaveChanges();
+            }
+        }
+
     }
 }
 

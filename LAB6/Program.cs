@@ -96,6 +96,7 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     context.Database.Migrate(); // застосування міграцій, якщо є
     context.Seed(); // Виклик методу Seed
+    //context.Seed10X();
 }
 
 // Configure the HTTP request pipeline.
