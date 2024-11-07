@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LAB9.AddBranchPage"
+             Title="Add Branch">
+
+    <Grid Padding="20">
+        <!-- Overlay for loading animation -->
+        <Grid x:Name="LoadingOverlay" IsVisible="{Binding IsBusy}" BackgroundColor="Black" Opacity="0.5"
+              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ZIndex="1">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" Color="White" WidthRequest="50" HeightRequest="50" />
+                <Label Text="Loading, please wait..." TextColor="White" FontSize="18" HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+
+        <!-- Main Content -->
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ZIndex="0">
+                <Entry Placeholder="Branch Details" Text="{Binding NewBranch.BranchDetails}">
+                    <!-- Adaptive font size for iOS, Android, and tvOS -->
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <Picker Title="Branch Type" 
+                        ItemsSource="{Binding BranchTypes}" 
+                        ItemDisplayBinding="{Binding BranchTypeCode}" 
+                        SelectedItem="{Binding SelectedBranchType}">
+                    <!-- Adaptive font size for iOS, Android, and tvOS -->
+                    <Picker.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Picker.FontSize>
+                </Picker>
+
+                <!-- Adaptive button size and style -->
+                <Button Text="Add Branch" Command="{Binding AddBranchCommand}">
+                    <Button.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Button.FontSize>
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="50"/>
+                            <On Platform="Android" Value="60"/>
+                            <On Platform="tvOS" Value="70"/>
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+
+                <ListView ItemsSource="{Binding Branches}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding BranchDetails}" Detail="{Binding BranchTypeCode}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <!-- Adaptive list view size -->
+                    <ListView.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="200"/>
+                            <On Platform="Android" Value="250"/>
+                            <On Platform="tvOS" Value="300"/>
+                        </OnPlatform>
+                    </ListView.HeightRequest>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

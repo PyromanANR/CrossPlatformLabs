@@ -11,9 +11,9 @@ namespace LAB6.Models
         public string BranchDetails { get; set; }
 
         // Navigation properties
-        public Bank Bank { get; set; }
-        public Address Address { get; set; }
-        public RefBranchType BranchType { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        public Bank? Bank { get; set; }
+        public Address? Address { get; set; }
+        public RefBranchType? BranchType { get; set; }
+        public ICollection<Customer>? Customers { get; set; }
     }
 }

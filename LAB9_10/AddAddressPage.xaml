@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LAB9.AddAddressPage"
+             Title="Add Address">
+
+    <Grid Padding="20">
+        <!-- Overlay for loading animation with semi-transparent background -->
+        <Grid x:Name="LoadingOverlay" IsVisible="{Binding IsBusy}" BackgroundColor="Black" Opacity="0.5"
+              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ZIndex="1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="White" 
+                               WidthRequest="50" 
+                               HeightRequest="50" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Address Form Layout -->
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ZIndex="0">
+
+                <!-- Line 1 -->
+                <Label Text="Line 1" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter address line 1" Text="{Binding NewAddress.Line1}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- Line 2 -->
+                <Label Text="Line 2" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter address line 2" Text="{Binding NewAddress.Line2}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- Town/City -->
+                <Label Text="Town/City" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter town or city" Text="{Binding NewAddress.TownCity}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- Zip/Postcode -->
+                <Label Text="Zip/Postcode" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter zip or postcode" Text="{Binding NewAddress.ZipPostcode}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- State/Province/County -->
+                <Label Text="State/Province/County" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter state, province, or county" Text="{Binding NewAddress.StateProvinceCounty}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- Country -->
+                <Label Text="Country" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Entry Placeholder="Enter country" Text="{Binding NewAddress.Country}">
+                    <Entry.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Entry.FontSize>
+                </Entry>
+
+                <!-- Other Details -->
+                <Label Text="Other Details" FontAttributes="Bold">
+                    <Label.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Label.FontSize>
+                </Label>
+                <Editor Placeholder="Additional details" Text="{Binding NewAddress.OtherDetails}" HeightRequest="100">
+                    <Editor.FontSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="16"/>
+                            <On Platform="Android" Value="18"/>
+                            <On Platform="tvOS" Value="20"/>
+                        </OnPlatform>
+                    </Editor.FontSize>
+                </Editor>
+
+                <!-- Submit Button -->
+                <Button Text="Add Address" Command="{Binding AddAddressCommand}" 
+                        BackgroundColor="#4CAF50" TextColor="White" 
+                        CornerRadius="10" Padding="10" FontSize="18"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -12,7 +12,7 @@
         public string OtherDetails { get; set; }
 
         // Navigation properties
-        public ICollection<Branch> Branches { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<Branch>? Branches { get; set; }
+        public ICollection<Customer>? Customers { get; set; }
     }
 }

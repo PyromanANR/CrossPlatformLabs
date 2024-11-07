@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAB6", "LAB6\LAB6.csproj", 
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "LAB7_Jest_Test", "LAB7_Jest_Test\LAB7_Jest_Test.esproj", "{93CDB127-3DEF-4ABF-A7A3-E58671FCBC8E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAB9", "LAB9_10\LAB9.csproj", "{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,12 @@ Global
 		{93CDB127-3DEF-4ABF-A7A3-E58671FCBC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93CDB127-3DEF-4ABF-A7A3-E58671FCBC8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93CDB127-3DEF-4ABF-A7A3-E58671FCBC8E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBB7567-C5AD-40E7-8C93-E9EBBBCE16A2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

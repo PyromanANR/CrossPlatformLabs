@@ -20,7 +20,6 @@ builder.Services.AddSwaggerGen(c =>
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
 
-// У файлі Program.cs для ASP.NET Core 6+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -76,7 +75,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidAudience = "https://dev-r4xfunji2agoyxku.us.auth0.com/api/v2/",
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ZliPXyyIKw7ykLpN102cDEGpFWXiaME7RZfCq0AXjpKeOk9FOd6XMVb9zQOhG7Nj")), // Replace with your secret key
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ZliPXyyIKw7ykLpN102cDEGpFWXiaME7RZfCq0AXjpKeOk9FOd6XMVb9zQOhG7Nj")), 
         ValidateIssuerSigningKey = true,
     };
 });

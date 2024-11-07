@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="LAB9.GraphicChartPage"
+             Title="Transaction Chart">
+    <Grid Padding="20">
+        <!-- Transaction chart -->
+        <microcharts:ChartView x:Name="transactionChart"
+                              VerticalOptions="FillAndExpand"
+                              HorizontalOptions="FillAndExpand"
+                              Chart="{Binding TransactionChart}">
+
+            <!-- Adaptive height and width for tvOS -->
+            <microcharts:ChartView.HeightRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="300"/>
+                    <On Platform="Android" Value="300"/>
+                    <On Platform="tvOS" Value="400"/>
+                    <!-- Larger height for tvOS -->
+                </OnPlatform>
+            </microcharts:ChartView.HeightRequest>
+
+            <microcharts:ChartView.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="600"/>
+                    <On Platform="Android" Value="600"/>
+                    <On Platform="tvOS" Value="1200"/>
+                    <!-- Larger width for tvOS -->
+                </OnPlatform>
+            </microcharts:ChartView.WidthRequest>
+
+            <!-- Adaptive background color for tvOS -->
+            <microcharts:ChartView.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="iOS" Value="White"/>
+                    <On Platform="Android" Value="White"/>
+                    <On Platform="tvOS" Value="LightGray"/>
+                    <!-- Lighter background for tvOS -->
+                </OnPlatform>
+            </microcharts:ChartView.BackgroundColor>
+
+        </microcharts:ChartView>
+    </Grid>
+</ContentPage>

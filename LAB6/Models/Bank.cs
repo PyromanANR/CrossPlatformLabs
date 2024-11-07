@@ -6,6 +6,6 @@
         public string BankDetails { get; set; }
 
         // Navigation property
-        public ICollection<Branch> Branches { get; set; }
+        public ICollection<Branch>? Branches { get; set; }
     }
 }

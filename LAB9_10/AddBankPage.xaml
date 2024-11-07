@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LAB9.AddBankPage"
+             Title="Add Bank">
+
+    <Grid Padding="20">
+        <!-- Overlay for loading animation with semi-transparent background -->
+        <Grid x:Name="LoadingOverlay" IsVisible="{Binding IsBusy}" BackgroundColor="Black" Opacity="0.5"
+              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ZIndex="1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="White" 
+                               WidthRequest="50" 
+                               HeightRequest="50" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Bank Form Layout -->
+        <StackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ZIndex="0">
+            <!-- Adaptive label for Bank Name -->
+            <Label Text="Bank Name" FontAttributes="Bold">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="16"/>
+                        <On Platform="Android" Value="18"/>
+                        <On Platform="tvOS" Value="20"/>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
+
+            <!-- Adaptive entry for bank details -->
+            <Entry Placeholder="Enter bank name" Text="{Binding NewBank.BankDetails}">
+                <Entry.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="16"/>
+                        <On Platform="Android" Value="18"/>
+                        <On Platform="tvOS" Value="20"/>
+                    </OnPlatform>
+                </Entry.FontSize>
+            </Entry>
+
+            <!-- Adaptive button styling -->
+            <Button Text="Add Bank" Command="{Binding AddBankCommand}" 
+                    BackgroundColor="#4CAF50" TextColor="White" 
+                    CornerRadius="10" FontSize="18">
+                <Button.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="10"/>
+                        <On Platform="Android" Value="12"/>
+                        <On Platform="tvOS" Value="15"/>
+                    </OnPlatform>
+                </Button.Padding>
+                <Button.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="16"/>
+                        <On Platform="Android" Value="18"/>
+                        <On Platform="tvOS" Value="20"/>
+                    </OnPlatform>
+                </Button.FontSize>
+                <Button.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="50"/>
+                        <On Platform="Android" Value="60"/>
+                        <On Platform="tvOS" Value="70"/>
+                    </OnPlatform>
+                </Button.HeightRequest>
+            </Button>
+        </StackLayout>
+    </Grid>
+</ContentPage>

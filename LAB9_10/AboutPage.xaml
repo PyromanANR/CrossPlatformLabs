@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LAB9.AboutPage"
+             Title="About">
+
+    <StackLayout Padding="20" Spacing="20">
+        <Label Text="Avdeev Nikita ІПЗ-32"
+               HorizontalOptions="Center">
+            <Label.FontSize>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="22"/>
+                    <On Platform="Android" Value="24"/>
+                    <On Platform="Windows" Value="26"/>
+                </OnPlatform>
+            </Label.FontSize>
+        </Label>
+        <Label Text="This is a sample app to demonstrate navigation and basic functionality in MAUI."
+               HorizontalOptions="Center">
+            <Label.FontSize>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="14"/>
+                    <On Platform="Android" Value="16"/>
+                    <On Platform="Windows" Value="18"/>
+                </OnPlatform>
+            </Label.FontSize>
+        </Label>
+        <Label Text="Version 1.0"
+               HorizontalOptions="Center">
+            <Label.FontSize>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS" Value="12"/>
+                    <On Platform="Android" Value="14"/>
+                    <On Platform="Windows" Value="16"/>
+                </OnPlatform>
+            </Label.FontSize>
+        </Label>
+    </StackLayout>
+</ContentPage>
