@@ -70,4 +70,6 @@ SqLite
 # LAB8 INFO:
 ## View LAB8 folder and README.md або Звіт.docx 
 
+# LAB9_10 INFO:
+## View LAB9_10 folder and README.md
 
