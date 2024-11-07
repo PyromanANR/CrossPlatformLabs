@@ -67,6 +67,7 @@ SqLite
 ## Different versions of the app have been successfully created. Also, using Jest, we tested the behavior of the api in accordance with different databases and situations 
 ![image](https://github.com/user-attachments/assets/5a1b6742-3219-4e56-bae6-baf6b6520cec)
 
-
+# LAB8 INFO:
+## View LAB8 folder and README.md або Звіт.docx 
 
 
