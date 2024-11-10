@@ -16,6 +16,9 @@ rm packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install -y dotnet-sdk-8.0
 
+dotnet nuget add source http://192.168.56.1:8080/v3/index.json -n Baget
+dotnet tool install --global Lab4 --version 1.0.0
+
 # Verify installation
 dotnet --version
 

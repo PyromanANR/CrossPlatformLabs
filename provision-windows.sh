@@ -9,6 +9,9 @@ choco install dotnet-8.0-sdk -y
 # Refresh environment variables
 refreshenv
 
+dotnet nuget add source http://192.168.56.1:8080/v3/index.json -n Baget
+dotnet tool install --global Lab4 --version 1.0.0
+
 # Verify installation
 dotnet --version
 

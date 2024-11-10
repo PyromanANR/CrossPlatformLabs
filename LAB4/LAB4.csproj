@@ -16,6 +16,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <PackAsTool>true</PackAsTool>
+	  <OutputType>Exe</OutputType>
+	  <Version>1.0.0</Version>
+	  <Authors>NikitaAvdeev</Authors>
+	  <Description>Baget</Description>
+	  <ToolCommandName>Lab4</ToolCommandName>
   </PropertyGroup>
   
  
