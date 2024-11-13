@@ -10,4 +10,4 @@ This project is a Microsoft Word add-in that allows users to upload, process, an
 2. Select the corresponding lab task from the ribbon.
 3. View the results, automatically inserted into the document.
 
-![image](https://github.com/user-attachments/assets/dc5d3d7c-bb00-400b-9b04-857ef4c791bb)
+![image](https://github.com/user-attachments/assets/555a1a59-7588-44f1-84df-af445083ae74)
