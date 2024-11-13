@@ -1,4 +1,6 @@
 using LAB6.Data;
+using LAB6.Models;
+using LAB6.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -6,6 +8,8 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using Salesforce.Force;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -85,6 +89,20 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ApiScope", policy => policy.RequireClaim("scope", "read:messages"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
+
+// Add the Salesforce Authentication service
+builder.Services.AddScoped<ISalesforceAuthService, SalesforceAuthService>();
 
 var app = builder.Build();
 
@@ -108,6 +126,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 
