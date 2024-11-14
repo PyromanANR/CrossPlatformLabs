@@ -5,7 +5,7 @@
 hosts = {
   "ubuntu" => "192.168.56.10",
   "windows" => "192.168.56.11"
-  #"mac" => "192.168.56.12"
+   "mac" => "192.168.56.12"
 }
 
 Vagrant.configure("2") do |config|
@@ -50,19 +50,19 @@ Vagrant.configure("2") do |config|
     windows.vm.provision "shell", path: "provision-windows.sh"
   end
 
-  # Mac Machine Configuration (commented out)
-  #config.vm.define "mac" do |mac|
-    #mac.vm.box = "ramsey/macos-catalina"
-    #mac.vm.hostname = "mac-vm"
-    #mac.vm.network "private_network", ip: hosts["mac"]
-    #mac.vm.provider "virtualbox" do |v|
-      #v.name = "Mac VM"
-      #v.memory = "4096"
-      #v.cpus = 2
-      #v.customize ["modifyvm", :id, "--nictype1", "82540EM"]
-      #v.customize ["modifyvm", :id, "--nictype2", "82540EM"]
-    #end
-    #mac.vm.synced_folder ".", "/Users/vagrant/project"
+  Mac Machine Configuration (commented out)
+  config.vm.define "mac" do |mac|
+    mac.vm.box = "ramsey/macos-catalina"
+    mac.vm.hostname = "mac-vm"
+    mac.vm.network "private_network", ip: hosts["mac"]
+    mac.vm.provider "virtualbox" do |v|
+      v.name = "Mac VM"
+      v.memory = "4096"
+      v.cpus = 2
+      v.customize ["modifyvm", :id, "--nictype1", "82540EM"]
+      v.customize ["modifyvm", :id, "--nictype2", "82540EM"]
+    end
+    mac.vm.synced_folder ".", "/Users/vagrant/project"
     #mac.vm.provision "shell", path: "provision-mac.sh"
   #end
 end
