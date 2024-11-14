@@ -63,6 +63,6 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--nictype2", "82540EM"]
     end
     mac.vm.synced_folder ".", "/Users/vagrant/project"
-    #mac.vm.provision "shell", path: "provision-mac.sh"
+    mac.vm.provision "shell", path: "provision-mac.sh"
   #end
 end
