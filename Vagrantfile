@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
     windows.vm.provision "shell", path: "provision-windows.sh"
   end
 
-  Mac Machine Configuration (commented out)
+  # Mac Machine Configuration (commented out)
   config.vm.define "mac" do |mac|
     mac.vm.box = "ramsey/macos-catalina"
     mac.vm.hostname = "mac-vm"
