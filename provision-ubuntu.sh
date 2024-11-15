@@ -26,6 +26,6 @@ dotnet --version
 cd /home/vagrant/project
 
 # Run LAB4
-dotnet run --project LAB4 -- --input LAB4/INPUT.TXT --output LAB4/OUTPUT.TXT
+dotnet run --project LAB4 --input LAB4/INPUT.TXT --output LAB4/OUTPUT.TXT
 
 echo "Ubuntu environment setup complete and LAB4 executed"

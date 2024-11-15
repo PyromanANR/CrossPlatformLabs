@@ -22,6 +22,7 @@
 	  <Authors>NikitaAvdeev</Authors>
 	  <Description>Baget</Description>
 	  <ToolCommandName>Lab4</ToolCommandName>
+	  <PackageId>NAvdeevLab4</PackageId>
   </PropertyGroup>
   
  
