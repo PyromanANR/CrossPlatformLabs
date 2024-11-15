@@ -73,3 +73,6 @@ SqLite
 # LAB9_10 INFO:
 ## View LAB9_10 folder and README.md
 
+# LAB11 INFO:
+## View LAB11Salesforce_report folder and WordAddIn_LAB11
+
