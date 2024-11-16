@@ -76,3 +76,6 @@ SqLite
 # LAB11 INFO:
 ## View LAB11Salesforce_report folder and WordAddIn_LAB11
 
+# LAB13 INFO:
+## View LAB13_React folder and README.md
+
