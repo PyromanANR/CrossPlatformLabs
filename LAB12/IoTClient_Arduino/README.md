@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/6b7bd626-9f9d-425c-b8ca-cabb909fd59d)
+
 # Інструкція з налаштування IoT клієнта для Arduino
 
 ## Необхідне обладнання
