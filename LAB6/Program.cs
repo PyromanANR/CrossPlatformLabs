@@ -124,6 +124,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseHttpsRedirection();
 
