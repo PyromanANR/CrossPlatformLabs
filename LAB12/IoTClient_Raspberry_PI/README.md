@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/759fed3f-5afe-4034-99e3-f37a1322b080)
+
 # Інструкція з налаштування IoT-системи на Raspberry Pi
 
 ## Необхідне обладнання
